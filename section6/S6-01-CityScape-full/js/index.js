@@ -6,7 +6,7 @@ var floor;
 
 // SETUP ========================================================
 function setup() {
-  document.body.style.backgroundColor = '#d7f0f7';
+  document.body.style.backgroundColor = '	#6495ED';
   setupThreeJS();
   setupWorld();
 
