@@ -1,6 +1,7 @@
 var renderer, scene, camera;
 var cubes = [];
-var randomSpeedX = [];
+var randomRotationX = [];
+var randomRotationY = [];
 
 function init() {
   scene = new THREE.Scene();
@@ -25,51 +26,45 @@ function init() {
   controls = new THREE.OrbitControls(camera, renderer.domElement);
 
   //Create a two dimensional grid of objects, and position them accordingly
-    for (var x = -10; x <= 10; x += 5) { // Start from -35 and sequentially add one every 5 pixels
-    for (var y = -10; y <= 10; y += 5) {
+    for (var x = -35; x < 40; x += 5) { // Start from -35 and sequentially add one every 5 pixels
+    for (var y = -35; y < 40; y += 5) {
 
       var boxGeometry = new THREE.BoxGeometry(3, 3, 3);
       //The color of the material is assigned a random color
-
-      if (x==-5 && y==-5){
-        boxMaterial = new THREE.MeshLambertMaterial({color: 0xF67280});
-      } else if (x==5 && y ==5){
-        boxMaterial = new THREE.MeshLambertMaterial({color: 0xF8B195});
-      } else {
-        boxMaterial = new THREE.MeshLambertMaterial({color: 0x355C7D});
-      }
-
+      var boxMaterial = new THREE.MeshLambertMaterial({color: Math.random() * 0xFFFFFF});
       var mesh = new THREE.Mesh(boxGeometry, boxMaterial);
       //mesh.castShadow = true;
       mesh.position.x = x;
       mesh.position.z = y;
-      mesh.rotation.x = Math.random() * 2 * Math.PI;
-      mesh.rotation.y = Math.random() * 2 * Math.PI;
-      mesh.rotation.z = Math.random() * 2 * Math.PI;
-      //console.log( "Rotation1:" + rotValue);
-      //console.log( "Rotation2:" + rotValue);
+      //mesh.scale.y = 0.5;
+    //  mesh.rotation.x = Math.random() * 2 * Math.PI;;
+      console.log( "First" + Math.random() * 2 * Math.PI);
+      console.log( "Second" + Math.random() * 2 * Math.PI);
+      //mesh.rotation.y = Math.random() * 2 * Math.PI;;
+      //mesh.rotation.z = Math.random() * 2 * Math.PI;;
       //Create random values for x and y, and store them
   var randomValueX = (Math.random() * 0.1)- 0.05;
-      randomSpeedX.push(randomValueX);
+  var randomValueY = (Math.random() * 0.1)- 0.05;
+      randomRotationX.push(randomValueX);
+      randomRotationY.push(randomValueY);
 
       scene.add(mesh);
       cubes.push(mesh);
     }
 }
-  //console.log(randomRotationX);
-  console.log("Init end");
-  console.log("DrawFrame Starts ******");
+
   document.body.appendChild(renderer.domElement);
 }
-
-function drawFrame(){
+var rot = 0;
+function drawFrame(ts){
   requestAnimationFrame(drawFrame);
+  rot += 0.01;
+  cubes.forEach(function(c,i){
+  /*  c.rotation.x += randomRotationX[i];
+    c.rotation.y += randomRotationY[i];*/
+    c.scale.y = Math.sin(ts/500*Math.PI + c.position.x*4.95 + c.position.z/10) +1;
+  });
 
-//console.log(randomRotationX);
-for (var i = 0; i < 5; i ++){
-  cubes[6].rotation.x += randomSpeedX[6];
-  cubes[18].rotation.x += randomSpeedX[18];
-}
   renderer.render(scene, camera);
 }
 
