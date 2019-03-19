@@ -6,7 +6,7 @@ var floor;
 
 // SETUP ========================================================
 function setup() {
-  document.body.style.backgroundColor = '	#6495ED';
+  document.body.style.backgroundColor = '#d7f0f7';
   setupThreeJS();
   setupWorld();
 
@@ -25,7 +25,7 @@ function setup() {
 
 function setupThreeJS() {
   scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(0xFF95CA, 0.002);
+  scene.fog = new THREE.FogExp2(0x9db3b5, 0.002);
 
   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
   camera.position.y = 400;
@@ -35,7 +35,7 @@ function setupThreeJS() {
   renderer = new THREE.WebGLRenderer({antialias: true});
   renderer.setSize( window.innerWidth, window.innerHeight );
   renderer.shadowMapEnabled = true;
-  renderer.setClearColor(0x6AFFFF, 1);
+  renderer.setClearColor(0x17293a, 1);
 
   document.body.appendChild( renderer.domElement );
 
@@ -57,10 +57,7 @@ function setupWorld() {
   //Settings for models and material
   var geometry = new THREE.CubeGeometry( 1, 1, 1 );
   //geometry.applyMatrix( new THREE.Matrix4().makeTranslation( 0, 0.5, 0 ) );
-  //var material = new THREE.MeshPhongMaterial({overdraw: true, color:Math.random()*0xFFFFFF});
-  var material = new THREE.MeshPhongMaterial({overdraw: true, color:Math.random()*0xFFFFFF});
-//wireframe 线框
-//NormalMaterial 基础材质
+  var material = new THREE.MeshPhongMaterial({overdraw: true, color: 0xcccccc});
 
   //Geometry to store all buildings of the city
   var cityGeometry = new THREE.Geometry();
@@ -71,9 +68,8 @@ function setupWorld() {
     //Randomize position and scale of the buildings
     building.position.x = Math.floor( Math.random() * 200 - 100 ) * 4;
     building.position.z = Math.floor( Math.random() * 200 - 100 ) * 4;
-    //building.position.y = Math.floor( Math.random() * 200 - 100 ) * 5;
     building.scale.x  = Math.pow(Math.random(), 2) * 50 + 10;
-    building.scale.y  = Math.pow(Math.random(), 2) * building.scale.x * 10 + 8;
+    building.scale.y  = Math.pow(Math.random(), 3) * building.scale.x * 8 + 8;
     building.scale.z  = building.scale.x;
 
     //Merge all buildings to one model - cityGeometry
