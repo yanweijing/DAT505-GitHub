@@ -12,7 +12,7 @@ camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight,
 var renderer = new THREE.WebGLRenderer({antialias:true});
 
 // Configure renderer clear color
-renderer.setClearColor("#4F9D9D");
+renderer.setClearColor("#5A8296");
 
 // Configure renderer size
 renderer.setSize( window.innerWidth, window.innerHeight );
@@ -37,6 +37,8 @@ scene.add(light2);
 // Create a Cube Mesh with basic material ---------
 var geometry = new THREE.BoxGeometry(100, 100, 100);
 
+var geometry = new THREE.CylinderGeometry( 50, 50, 20, 32 );
+var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
 
 // MATERIAL 1:
 //var material = new THREE.MeshBasicMaterial( { color: "#433F81" } );
@@ -45,13 +47,13 @@ var geometry = new THREE.BoxGeometry(100, 100, 100);
 //var material = new THREE.MeshNormalMaterial();
 
 //MATERIAL 3:
-/*
-var material = new THREE.MeshLambertMaterial({
+
+var material1 = new THREE.MeshLambertMaterial({
   color: "#433F81",
   transparent: true,
   opacity: 1
 });
-*/
+
 
 //MATERIAL 4:
 //var material = new THREE.MeshPhongMaterial({shininess: 1});
@@ -67,12 +69,11 @@ var material = new THREE.MeshLambertMaterial({
   emissiveIntensity: 1,
   specularMap: null
 });
-//m
 
 
-/*
+
 //MATERIAL 6 (shiny material):
-var material = new THREE.MeshPhongMaterial({
+var material2 = new THREE.MeshPhongMaterial({
   color: 0xF3FFE2,
   specular: 0xffffff,
   shininess: 1000,
@@ -87,17 +88,16 @@ var material = new THREE.MeshPhongMaterial({
   displacementBias: 0,
   specularMap: null
 });
-*/
 
 
-/*
+
 //MATERIAL 6 (combination of shiny + non-shinny):
-var material = new THREE.MeshStandardMaterial({
+var material6 = new THREE.MeshStandardMaterial({
   color: 0xF3FFE2,
   roughness: 0.5,
   metalness: 0.5
 });
-*/
+
 
 /*
 //MATERIAL 7 (physical-based material)
@@ -110,28 +110,27 @@ var material = new THREE.MeshPhysicalMaterial({
   claerCoatRoughness: 0
 });
 */
-var  texture = new THREE.TextureLoader().load('texture/chong.jpg');
-var  material1 = new THREE.MeshBasicMaterial({map: texture});
 
+var texture = new THREE.TextureLoader().load("texture/black.jpg");
 
+var material1 = new THREE.MeshBasicMaterial({map:texture});
 
+var texture = new THREE.TextureLoader().load("texture/further.jpg");
 
-var  texture = new THREE.TextureLoader().load('texture/timg.jpg');
-var  material2 = new THREE.MeshBasicMaterial({map: texture});
+var material2 = new THREE.MeshBasicMaterial({map:texture});
 
-var  texture = new THREE.TextureLoader().load('texture/shan.jpg');
-var  material3 = new THREE.MeshBasicMaterial({map: texture});
+var texture = new THREE.TextureLoader().load("texture/orange.jpg");
 
+var material3 = new THREE.MeshBasicMaterial({map:texture});
 
-
-var mesh1 = new THREE.Mesh( geometry, material2);
+var mesh1 = new THREE.Mesh( geometry, material2 );
 mesh1.position.z = -1000;
 mesh1.position.y = 100;
 
-var mesh2 = new THREE.Mesh( geometry, material1 );
+var mesh2 = new THREE.Mesh( geometry, material2 );
 mesh2.position.z = -1000;
-mesh2.position.x = -100;
-mesh2.position.y = 200;
+mesh2.position.x =200;
+mesh2.position.y = 100;
 
 var mesh3 = new THREE.Mesh( geometry, material2 );
 mesh3.position.z = -1000;
@@ -140,98 +139,84 @@ mesh3.position.y = 100;
 
 
 
-
-var mesh4 = new THREE.Mesh( geometry, material1 );
+{var mesh4 = new THREE.Mesh( geometry, material2 );
 mesh4.position.z = -1000;
 mesh4.position.x = 100;
 mesh4.position.y = 200;
 
 var mesh5 = new THREE.Mesh( geometry, material2 );
 mesh5.position.z = -1000;
-mesh5.position.x = 200;
-mesh5.position.y = 100;
+mesh5.position.x = -100;
+mesh5.position.y = 200;
 
 var mesh6 = new THREE.Mesh( geometry, material2 );
 mesh6.position.z = -1000;
 mesh6.position.x = 0;
-mesh6.position.y = -100;
+mesh6.position.y = -100;}
+mesh4.position.z = -1000;
+mesh4.position.x = 100;
+mesh4.position.y = 200;
 
+var mesh5 = new THREE.Mesh( geometry, material2 );
+mesh5.position.z = -1000;
+mesh5.position.x =-100;
+mesh5.position.y = 200;
 
+var mesh8 = new THREE.Mesh( geometry, material2 );
+mesh8.position.z = -1000;
+mesh8.position.x = -200;
+mesh8.position.y = -100;
 
+var mesh10 = new THREE.Mesh( geometry, material2 );
+mesh10.position.z = -1000;
+mesh10.position.x = 200;
+mesh10.position.y = -100;
 
-var geometry = new THREE.DodecahedronGeometry(70,  1);
+var mesh11 = new THREE.Mesh( geometry, material2 );
+mesh11.position.z = -1000;
+mesh11.position.x = -100;
+mesh11.position.y = -200;
 
+var mesh12 = new THREE.Mesh( geometry, material2 );
+mesh12.position.z = -1000;
+mesh12.position.x = 100;
+mesh12.position.y = -200;
+
+var geometry = new THREE.ConeBufferGeometry( 50, 70, 32 );
+var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+var mesh6 = new THREE.Mesh( geometry, material3 );
+mesh6.position.z = -1000;
+mesh6.position.y = -60;
+
+var geometry = new THREE.CircleBufferGeometry( 40, 32 );
+var material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
 var mesh7 = new THREE.Mesh( geometry, material1 );
 mesh7.position.z = -1000;
 mesh7.position.x = -100;
 mesh7.position.y = 0;
 
-var mesh8 = new THREE.Mesh( geometry, material2);
-mesh8.position.z = -1000;
-mesh8.position.x = -200;
-mesh8.position.y = -100;
-
-
-{var mesh9 = new THREE.Mesh( geometry, material1 );
+var mesh9 = new THREE.Mesh( geometry, material1 );
 mesh9.position.z = -1000;
 mesh9.position.x = 100;
 mesh9.position.y = 0;
 
-var mesh10 = new THREE.Mesh( geometry, material2 );
-mesh10.position.z = -1000;
-mesh10.position.x = 200;
-mesh10.position.y = -100;}
 
-
-var geometry = new THREE.CylinderBufferGeometry( 70, 50, 200, 320 );
-var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
-
-{var mesh11 = new THREE.Mesh( geometry, material1 );
-mesh11.position.z = -1000;
-mesh11.position.x = -100;
-mesh11.position.y = -200;
-
-var mesh12 = new THREE.Mesh( geometry, material1 );
-mesh12.position.z = -1000;
-mesh12.position.x = 100;
-mesh12.position.y = -200;}
-
-
-
-var geometry = new THREE.BoxGeometry(1000, 1000, 1000);
-var material = new THREE.MeshBasicMaterial( {color: 0x7b7b7b} );
-{var mesh13 = new THREE.Mesh( geometry, material3);
-mesh13.position.z = -2000;
-mesh13.position.x = 500;
-mesh13.position.y = 0;}
 
 // ------------------------------------------------
 
 // Add mesh to scene
 scene.add( mesh1 );
-scene.add( mesh2 );//上1
-scene.add( mesh3 );//左1
-scene.add( mesh4 );//上2
-scene.add( mesh5 );//右1
-scene.add( mesh6 );//中2
-scene.add( mesh7 );//中1圆
-scene.add( mesh8 );//右1圆
-scene.add( mesh9 );//左1圆
-scene.add( mesh10 );//中2圆
-scene.add( mesh11 );//
-scene.add( mesh12 );//
-scene.add( mesh13 );//
-
-
-
-
-
-
-
-
-
-
-
+scene.add( mesh2 );
+scene.add( mesh3 );
+scene.add( mesh4 );
+scene.add( mesh5 );
+scene.add( mesh6 );
+scene.add( mesh7 );
+scene.add( mesh8 );
+scene.add( mesh9 );
+scene.add( mesh10 );
+scene.add( mesh11 );
+scene.add( mesh12 );
 
 var rot = 0;
 
@@ -277,10 +262,9 @@ var render = function () {
   mesh12.rotation.x = rot; //Continuously rotate the mesh
   mesh12.rotation.y = rot;
 
+
   // Render the scene
   renderer.render(scene, camera);
-
-
 };
 
 render(); //Run the function render
