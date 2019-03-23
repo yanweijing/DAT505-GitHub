@@ -25,7 +25,7 @@ function init() {
 
   var geometry = new THREE.BoxBufferGeometry( 20, 20, 20 );
 
-  for (var i=0; i<800; i++){
+  for (var i=0; i<200; i++){
 
   // Model/material loading!
 	var mtlLoader = new THREE.MTLLoader();
