@@ -30,7 +30,7 @@ function init(){
 ```
 
 * Create an empty scene,a basic perspective camera and a renderer with Antialiasing.
-Configure renderer clear color and renderer size.
+Configure renderer clear color and renderer size.The green number is the code representation of the color.
 
 ```javascript
 function geometry(){
@@ -58,7 +58,7 @@ scene.add( helper );
   scene.add( mesh2 );
   ```
 
-* Setting the coordinates and texture of the object.
+* Setting the coordinates and texture of the object.Border refers to the border of the generated object.
 
 ```javascript
 var light = new THREE.AmbientLight( 0xffff00 ); // soft white light
