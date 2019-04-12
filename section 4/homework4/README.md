@@ -48,7 +48,10 @@ function init() {
   for (var x = -10; x <= 10; x += 5) { // Start from -45 and sequentially add one every 5 pixels
   for (var y = -10; y <= 10; y += 5){
   //for (var z = -40; z < 40; z += 5){
+  ```
+  * The codes specify the range of values for X and Y.Generated from the position of -10,one for every 5 units until the position of 10 is generated.
 
+```javascript
   //console.log("x:" +x+",y:"+y+",z:" +z);
   var boxGeometry = new THREE.BoxGeometry(3, 6, 3);
 
@@ -88,7 +91,7 @@ function init() {
 }
 ```
 
-* Create a two dimensional grid of objects, and position them accordingly.
+* Create a two dimensional grid of objects, and position them accordingly.Control the initial rotation angle of the cube.
 
 ```javascript
 console.log(cubes);

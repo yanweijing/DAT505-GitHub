@@ -418,7 +418,7 @@ gui.add( controller, 'boxOpacity', 0.1, 1 ).onChange( function() {
 }
 ```
 
-* Setup the GUI controller and consoles.
+* Setup the GUI controller and consoles.I can control different objects' position,rotation and scale.
 
 ```javascript
 function dec2hex(i) {
