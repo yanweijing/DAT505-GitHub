@@ -1,4 +1,4 @@
-# DAT505-GitHub section1#
+# DAT505-GitHub section1 #
 
 * In this section,    
 
