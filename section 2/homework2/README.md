@@ -28,7 +28,7 @@ var light2 = new THREE.PointLight(0xffffff, 0.5);
 scene.add(light2);
 ```
 
-* First,create an empty scene,set its size and colour.
+* First,create an empty scene,set its size,colour and renderer.
 
 ```javascript
 var geometry = new THREE.BoxGeometry(100, 100, 100);
@@ -223,7 +223,7 @@ scene.add( mesh11 );
 scene.add( mesh12 );
 ```
 
-* Set the material for the object and the size of the object on different axes.
+* Set the material for the object and the size of the object on different axes and then add them into the scene.
 
 ```javascript
 var rot = 0;
@@ -278,4 +278,4 @@ var render = function () {
 render(); //Run the function render
 ```
 
-* Set the velocity of the object on the x and y axes.
+* Set the velocity of the object on the x and y axes,those objects can rotate in a Loop.
