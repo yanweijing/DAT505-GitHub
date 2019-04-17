@@ -10,7 +10,7 @@ var geometry2, material2, mesh2;
 var light, helper;
 ```
 
-* Setting global variables:scene,object,light
+* `Setting` global variables:scene,object,light
 
 ```javascript
 function init(){
