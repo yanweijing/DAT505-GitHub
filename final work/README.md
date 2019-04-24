@@ -183,3 +183,5 @@ function move() {
 Sun.rotation.y = Sun.rotation.y == 2 * Math.PI ? 0.0008 * Math.PI : Sun.rotation.y + 0.0008 * Math.PI
 ```
 * Update the rotation of the sun.
+
+* GitHub link https://github.com/yanweijing/DAT505-GitHub
