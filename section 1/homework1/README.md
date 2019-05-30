@@ -174,7 +174,7 @@ light.castShadow = true;
 ```javascript
 scene.add( light );
 ```
-*
+* Add the light to the scene.
 
 ```javascript
 light.shadow.mapSize.width = 512;  
