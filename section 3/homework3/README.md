@@ -22,19 +22,36 @@ init();
 render();
 
 function init(){
-  threejs = document.getElementById('threejs');
+  threejs = document.getElementById('threejs');}
+```
+* blank
 
-  scene = new THREE.Scene();
+```javascript
+scene = new THREE.Scene();
+```
+* Create an empty scene.
 
+```javascript
   renderer = new THREE.WebGLRenderer({antialias:true});
+```
+* Create a renderer.
+
+```javascript
   renderer.setSize(WIDTH, HEIGHT);
   renderer.setClearColor(0x333F47, 1);
   renderer.shadowMap.Enabled = true;
   renderer.shadowMapSoft = true;
 
   threejs.appendChild(renderer.domElement);
+```
+* blank
 
+```javascript
   camera = new THREE.PerspectiveCamera(45, WIDTH / HEIGHT, 1 , 1000);
+```
+* Create a basic perspective camera.
+
+```javascript
   camera.position.set(0, 6, 6);
   camera.lookAt(scene.position);
   scene.add(camera);
@@ -44,9 +61,15 @@ function init(){
 
 ```javascript
 geometry = new THREE.BoxGeometry(2, 2, 2);
+```
+* Create a Cube Mesh with material.
+
+```javascript
 geometry1 = new THREE.CircleBufferGeometry( 2, 32 );
+```
+* Create another Cube Mesh with material and give different name.
 
-
+```javascript
 color = Math.random() * 0xffffff;
 
 var material = new THREE.MeshLambertMaterial({

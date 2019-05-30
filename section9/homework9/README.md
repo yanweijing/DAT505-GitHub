@@ -3,6 +3,21 @@
 * In this section,
 
 ```javascript
+var listener = new THREE.AudioListener();
+```
+* Create an AudioListener and add it to the camera.
+
+```javascript
+var sound = new THREE.Audio( listener );
+```
+* Create a global audio source.
+
+```javascript
+var audioLoader = new THREE.AudioLoader();
+```
+* Load a sound and set it as the Audio object's buffer.
+
+```javascript
 var intersects = raycaster.intersectObjects( objects, true );
 
 if ( intersects.length > 0 ) {

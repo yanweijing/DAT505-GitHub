@@ -8,22 +8,16 @@ var light, helper;
 
 
 function init(){
-  // Create an empty scene --------------------------
   scene = new THREE.Scene();
 
-  // Create a basic perspective camera --------------
   camera = new THREE.PerspectiveCamera(40, window.innerWidth/window.innerHeight, 300, 10000 );
 
-  // Create a renderer with Antialiasing ------------
   renderer = new THREE.WebGLRenderer({antialias:true});
 
-  // Configure renderer clear color
   renderer.setClearColor("0xffff00");
 
-  // Configure renderer size
   renderer.setSize( window.innerWidth, window.innerHeight );
 
-  // Append Renderer to DOM
   document.body.appendChild( renderer.domElement );
 
 }

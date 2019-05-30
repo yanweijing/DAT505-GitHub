@@ -4,31 +4,42 @@
 
 ```javascript
 var scene = new THREE.Scene();
+```
+* creat a scene.
 
-// Create a basic perspective camera --------------
+```javascript
 camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 300, 10000 );
+```
+* Create a basic perspective camera.
 
-// Create a renderer with Antialiasing ------------
+```javascript
 var renderer = new THREE.WebGLRenderer({antialias:true});
+```
+* Create a renderer with Antialiasing.
 
-// Configure renderer clear color
+```javascript
 renderer.setClearColor("#5A8296");
+```
+* Configure renderer clear color.
 
-// Configure renderer size
+```javascript
 renderer.setSize( window.innerWidth, window.innerHeight );
+```
+* Configure renderer size.
 
-// Append Renderer to DOM
+```javascript
 document.body.appendChild( renderer.domElement );
+```
+* Append Renderer to DOM.
 
-// Configure lights -------------------------------
+```javascript
 var light1 = new THREE.AmbientLight(0xffffff, 0.5);
 scene.add(light1);
 
 var light2 = new THREE.PointLight(0xffffff, 0.5);
 scene.add(light2);
 ```
-
-* First,create an empty scene,set its size,colour and renderer.
+* Configure lights.
 
 ```javascript
 var geometry = new THREE.BoxGeometry(100, 100, 100);
