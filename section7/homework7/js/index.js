@@ -41,7 +41,6 @@ function init() {
 	});
 
 
-  // modify UVs to accommodate MatCap texture
 	var faceVertexUvs = geometry.faceVertexUvs[ 0 ];
 	for ( i = 0; i < faceVertexUvs.length; i ++ ) {
 		var uvs = faceVertexUvs[ i ];
@@ -76,7 +75,6 @@ function init() {
 		xPosMap[i] = map_range(xPos[i], -50, 50, 0, window.innerWidth);
 		yPosMap[i] = map_range(yPos[i], -50, 50, 0, window.innerHeight);
 
-		//console.log(xPosMap[1]);
 
 		mesh.position.x = xPos[i];
 		mesh.position.y = yPos[i];
@@ -146,7 +144,7 @@ function onWindowResize() {
 }
 
 function onDocumentMouseMove( event ) {
-	//mouseX = event.clientX - windowHalfX;
+
   mouseX = event.clientX;
   mouseY = event.clientY;
 }
