@@ -26,14 +26,20 @@ if ( intersects.length > 0 ) {
     INTERSECTED = intersects[ 0 ].object;
     INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
     INTERSECTED.material.emissive.setHex( 0xff0000 );
+```
+* Measure all intersections between rays and these objects, with or without descendants. When the result is returned, the intersections are sorted by distance, most recently in the first one, and the intersections are the same as those returned by .intersectObject.Emissive is the property emitted by this material.
 
+```javascript
     audioLoader.load( 'audio/shuu.wav', function( buffer ) {
       sound.setBuffer( buffer );
       sound.setLoop( false );
       sound.setVolume( 0.5 );
       sound.play();
     });
+```
+* Import audio text and set the appropriate properties of the audio, such as volume.
 
+```javascript
   }
 } else {
   if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
@@ -46,14 +52,18 @@ renderer.render( scene, camera );
 
 ```javascript
 function animate() {
+```
+* Enable custom animation types or change the animation being executed.
+
+```javascript
   requestAnimationFrame( animate );
 
   render();
-  //stats.update();
-}
+```
+* It sets the animation for the function to be executed, so the browser console will always execute the animate() function.
 
+```javascript
 function render() {
-  //Auto rotate camera
   theta += 0.1;
   camera.position.x = radius * Math.sin( THREE.Math.degToRad( theta ) );
   camera.position.y = radius * Math.sin( THREE.Math.degToRad( theta ) );
@@ -61,4 +71,4 @@ function render() {
   camera.lookAt( scene.position );
   camera.updateMatrixWorld();
   ```
-  Creat an AudioListener and add it to the camera.Creat a global audio source.
+* Set the position of the camera on the 3D axis.Point the camera's center point to the location pointed to by scene.position.Get the current position of the mirror from the world matrix
