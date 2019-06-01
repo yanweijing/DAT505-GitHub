@@ -39,57 +39,47 @@ function geometry(){
   mesh2.position.z = -900;
   mesh2.position.y = -50;
 
- //light = new THREE.DirectionalLight( 0xFFFFFF );
-
-// helper = new THREE.DirectionalLightHelper( light, 5 );
 
 scene.add( helper );
 
-// Add mesh to scene
 
   scene.add( mesh1 );
   scene.add( mesh2 );
 
 
-  var light = new THREE.AmbientLight( 0xffff00 ); // soft white light
+  var light = new THREE.AmbientLight( 0xffff00 );
 scene.add( light );
 
 var renderer = new THREE.WebGLRenderer();
 renderer.shadowMap.enabled = true;
-renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-//Create a DirectionalLight and turn on shadows for the light
 var light = new THREE.DirectionalLight( 0xffffff, 1, 100 );
-light.position.set( 0, 1, 0 ); 			//default; light shining from top
-light.castShadow = true;            // default false
+light.position.set( 0, 1, 0 );
+light.castShadow = true;
 scene.add( light );
 
-//Set up shadow properties for the light
-light.shadow.mapSize.width = 512;  // default
-light.shadow.mapSize.height = 512; // default
-light.shadow.camera.near = 0.5;    // default
-light.shadow.camera.far = 500;     // default
+light.shadow.mapSize.width = 512;
+light.shadow.mapSize.height = 512;
+light.shadow.camera.near = 0.5;
+light.shadow.camera.far = 500;
 
-//Create a sphere that cast shadows (but does not receive them)
 var sphereGeometry = new THREE.SphereBufferGeometry( 5, 32, 32 );
 var sphereMaterial = new THREE.MeshStandardMaterial( { color: 0xff0000 } );
 var sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
-sphere.castShadow = true; //default is false
-sphere.receiveShadow = false; //default
+sphere.castShadow = true;
+sphere.receiveShadow = false;
 scene.add( sphere );
 
-//Create a plane that receives shadows (but does not cast them)
 var planeGeometry = new THREE.PlaneBufferGeometry( 20, 20, 32, 32 );
 var planeMaterial = new THREE.MeshStandardMaterial( { color: 0x00ff00 } )
 var plane = new THREE.Mesh( planeGeometry, planeMaterial );
 plane.receiveShadow = true;
 scene.add( plane );
 
-//Create a helper for the shadow camera (optional)
 var helper = new THREE.CameraHelper( light.shadow.camera );
 scene.add( helper );
 
-  //scene.add( border9 );
 
 }
 
@@ -97,16 +87,16 @@ scene.add( helper );
 var render = function () {
   requestAnimationFrame( render );
 
-  mesh1.rotation.x += 0; //Continuously rotate the mesh
+  mesh1.rotation.x += 0;
   mesh1.rotation.z += 0.01;
 
-  mesh2.rotation.x += 0; //Continuously rotate the mesh
+  mesh2.rotation.x += 0;
   mesh2.rotation.z += 0.04;
 
 
   renderer.setClearColor("#87CEFA");
 
-  // Render the scene
+
   renderer.render(scene, camera);
 };
 

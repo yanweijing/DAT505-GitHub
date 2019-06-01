@@ -5,26 +5,55 @@
 ```javascript
 //Global variables
 var scene, camera, renderer;
-var geometry, material, mesh, threejs, color;
-var geometey,material1;
-var WIDTH = window.innerWidth,
-HEIGHT = window.innerHeight;
+```
+* Define a scene, camera, renderer.
 
+```javascript
+var geometry, material, mesh, threejs, color;
+```
+* Define the shape, material, color, and other properties of the object.
+
+```javascript
+var geometey,material1;
+```
+* Define the shape, material1.
+
+```javascript
+var WIDTH = window.innerWidth,
+```
+* Define the width of the receive window.
+
+```javascript
+HEIGHT = window.innerHeight;
+```
+* Define the height of the receive window.
+
+```javascript
 //GUI - Declare variable
 var gui = null;
+```
+* GUI - Declare variable.
 
+```javascript
 //Rotation converter
 var de2ra = function(degree) {
   return degree*(Math.PI/180);
 };
+```
+* Convert the degree to an offset angle.Angle and radians conversion.
 
+```javascript
 init();
 render();
+```
+* Call the init method to initialize, call the render method to render.
+
+```javascript
 
 function init(){
   threejs = document.getElementById('threejs');}
 ```
-* blank
+* Get the element with the ID threejs on the page.
 
 ```javascript
 scene = new THREE.Scene();
@@ -38,13 +67,28 @@ scene = new THREE.Scene();
 
 ```javascript
   renderer.setSize(WIDTH, HEIGHT);
-  renderer.setClearColor(0x333F47, 1);
-  renderer.shadowMap.Enabled = true;
-  renderer.shadowMapSoft = true;
+```
+* Develop the width and height of the renderer.
 
+```javascript
+  renderer.setClearColor(0x333F47, 1);
+```
+* Set the background color of the scene.
+
+```javascript
+  renderer.shadowMap.Enabled = true;
+```
+* Renderer turns on shadow rendering.
+
+```javascript
+  renderer.shadowMapSoft = true;
+```
+* Renderer turns on soft shadow rendering.
+
+```javascript
   threejs.appendChild(renderer.domElement);
 ```
-* blank
+* Add a cut point in threejs.
 
 ```javascript
   camera = new THREE.PerspectiveCamera(45, WIDTH / HEIGHT, 1 , 1000);
@@ -53,11 +97,18 @@ scene = new THREE.Scene();
 
 ```javascript
   camera.position.set(0, 6, 6);
+```
+* Set the camera's position.
+
+```javascript
   camera.lookAt(scene.position);
+```
+* Align the camera to the center of the scene.
+
+```javascript
   scene.add(camera);
 ```
-
-*  Create an empty scene,a renderer and a basic perspective camera.
+* Add the camera in the scene.
 
 ```javascript
 geometry = new THREE.BoxGeometry(2, 2, 2);
@@ -71,33 +122,72 @@ geometry1 = new THREE.CircleBufferGeometry( 2, 32 );
 
 ```javascript
 color = Math.random() * 0xffffff;
-
-var material = new THREE.MeshLambertMaterial({
-  //ambient: color,
-  color: color,
-  transparent: true
-});
-
-var material1 = new THREE.MeshLambertMaterial({
-  //ambient: color,
-  color: color,
-  transparent: true
-});
-
-var material2 = new THREE.MeshLambertMaterial({
-  //ambient: color,
-  color: color,
-  transparent: true
-});
-
-var material3 = new THREE.MeshLambertMaterial({
-  //ambient: color,
-  color: color,
-  transparent: true
-});
 ```
+* Generate random colors.
 
-* Create Cubes Mesh with materials.
+```javascript
+var material = new THREE.MeshLambertMaterial
+```
+* Define a material that is faint and not bright.
+
+```javascript
+  //ambient: color,
+  color: color,
+```
+* ambient: color.
+
+```javascript
+  transparent: true
+```
+* Set the window to be transparent.
+
+```javascript
+var material1 = new THREE.MeshLambertMaterial
+```
+* Define a material1 that is faint and not bright.
+
+```javascript
+  //ambient: color,
+  color: color,
+```
+* ambient: color
+
+```javascript
+  transparent: true
+```
+* Set the window to be transparent.
+
+```javascript
+var material2 = new THREE.MeshLambertMaterial
+```
+* Define a material2 that is faint and not bright.
+
+```javascript
+  //ambient: color,
+  color: color,
+```
+* ambient: color
+
+```javascript
+  transparent: true
+```
+* Set the window to be transparent.
+
+```javascript
+var material3 = new THREE.MeshLambertMaterial
+```
+* Define a material3 that is faint and not bright.
+
+```javascript
+  //ambient: color,
+  color: color,
+```
+* ambient: color
+
+```javascript
+  transparent: true
+```
+* Set the window to be transparent.
 
 ```javascript
 mesh1 = new THREE.Mesh(geometry, material1);
@@ -107,7 +197,10 @@ mesh1.rotation.y = de2ra(-90);
 mesh1.scale.set(1, 1, 1);
 mesh1.doubleSided = true;
 mesh1.castShadow = true;
+```
+* Set the shape and material1 of mesh1, the position is (0,0,0).Set mesh1 to 0. The initial arc is 0.The rotation angle of the y-axis is -90, and the size is (1, 1, 1), receiving double-sided material and receiving shadows.
 
+```javascript
 mesh2 = new THREE.Mesh(geometry, material2);
 mesh2.position.set(0, 0, 0);
 mesh2.rotation.set(0, 0, 0);
@@ -115,7 +208,10 @@ mesh2.rotation.y = de2ra(-90);
 mesh2.scale.set(1, 1, 1);
 mesh2.doubleSided = true;
 mesh2.castShadow = true;
+```
+* Set the shape and material2 of mesh2, the position is (0,0,0).Set mesh1 to 0. The initial arc is 0.The rotation angle of the y-axis is -90, and the size is (1, 1, 1), receiving double-sided material and receiving shadows.
 
+```javascript
 mesh = new THREE.Mesh(geometry, material);
 mesh.position.set(0, 0, 0);
 mesh.rotation.set(0, 0, 0);
@@ -123,7 +219,10 @@ mesh.rotation.y = de2ra(-90);
 mesh.scale.set(1, 1, 1);
 mesh.doubleSided = true;
 mesh.castShadow = true;
+```
+* Set the shape and material of mesh, the position is (0,0,0).Set mesh to 0. The initial arc is 0.The rotation angle of the y-axis is -90, and the size is (1, 1, 1), receiving double-sided material and receiving shadows.
 
+```javascript
 mesh3 = new THREE.Mesh(geometry, material);
 mesh3.position.set(0, 0, 0);
 mesh3.rotation.set(0, 0, 0);
@@ -131,7 +230,10 @@ mesh3.rotation.y = de2ra(-90);
 mesh3.scale.set(1, 1, 1);
 mesh3.doubleSided = true;
 mesh3.castShadow = true;
+```
+* Set the shape and material2 of mesh3, the position is (0,0,0).Set mesh3 to 0. The initial arc is 0.The rotation angle of the y-axis is -90, and the size is (1, 1, 1), receiving double-sided material and receiving shadows.
 
+```javascript
 mesh4 = new THREE.Mesh(geometry, material);
 mesh4.position.set(0, 0, 0);
 mesh4.rotation.set(0, 0, 0);
@@ -139,7 +241,10 @@ mesh4.rotation.y = de2ra(-90);
 mesh4.scale.set(1, 1, 1);
 mesh4.doubleSided = true;
 mesh4.castShadow = true;
+```
+* Set the shape and material of mesh4, the position is (0,0,0).Set mesh4 to 0. The initial arc is 0.The rotation angle of the y-axis is -90, and the size is (1, 1, 1), receiving double-sided material and receiving shadows.
 
+```javascript
 mesh5 = new THREE.Mesh(geometry, material);
 mesh5.position.set(0, 0, 0);
 mesh5.rotation.set(0, 0, 0);
@@ -147,7 +252,10 @@ mesh5.rotation.y = de2ra(-90);
 mesh5.scale.set(1, 1, 1);
 mesh5.doubleSided = true;
 mesh5.castShadow = true;
+```
+* Set the shape and material of mesh6, the position is (0,0,0).Set mesh5 to 0. The initial arc is 0.The rotation angle of the y-axis is -90, and the size is (1, 1, 1), receiving double-sided material and receiving shadows.
 
+```javascript
 mesh6 = new THREE.Mesh(geometry, material);
 mesh6.position.set(0, 0, 0);
 mesh6.rotation.set(0, 0, 0);
@@ -155,7 +263,10 @@ mesh6.rotation.y = de2ra(-90);
 mesh6.scale.set(1, 1, 1);
 mesh6.doubleSided = true;
 mesh6.castShadow = true;
+```
+* Set the shape and material of mesh6, the position is (0,0,0).Set mesh6 to 0. The initial arc is 0.The rotation angle of the y-axis is -90, and the size is (1, 1, 1), receiving double-sided material and receiving shadows.
 
+```javascript
 mesh7 = new THREE.Mesh(geometry, material);
 mesh7.position.set(0, 0, 0);
 mesh7.rotation.set(0, 0, 0);
@@ -163,8 +274,10 @@ mesh7.rotation.y = de2ra(-90);
 mesh7.scale.set(1, 1, 1);
 mesh7.doubleSided = true;
 mesh7.castShadow = true;
+```
+* Set the shape and material of mesh7, the position is (0,0,0).Set mesh7 to 0. The initial arc is 0.The rotation angle of the y-axis is -90, and the size is (1, 1, 1), receiving double-sided material and receiving shadows.
 
-//Creat two circles of the same position and size
+```javascript
 circle = new THREE.Mesh(geometry1, material);
 circle.position.set(0, 0, 0);
 circle.rotation.set(0, 0, 0);
@@ -173,7 +286,6 @@ circle.scale.set(1, 1, 1);
 circle.doubleSided = true;
 circle.castShadow = true;
 
-
 circle1 = new THREE.Mesh(geometry1, material3);
 circle1.position.set(0, 0, 0);
 circle1.rotation.set(0, 0, 0);
@@ -181,18 +293,12 @@ circle1.rotation.y = de2ra(-45);
 circle1.scale.set(1, 1, 1);
 circle1.doubleSided = true;
 circle1.castShadow = true;
+```
+* Creat two circles of the same position and size. The position is (0,0,0).Set circle1 to 0. The initial arc is 0.The rotation angle of the y-axis is -45, and the size is (1, 1, 1), receiving double-sided material and receiving shadows.
 
-/*circle2 = new THREE.Mesh(geometry1, material3);
-circle2.position.set(0, 0, 0);
-circle2.rotation.set(0, 0, 0);
-circle2.rotation.y = de2ra(-45);
-circle2.scale.set(1, 1, 1);
-circle2.doubleSided = true;
-circle2.castShadow = true;*/
-
+```javascript
 scene.add(circle);
 scene.add(circle1);
-/*scene.add(circle2);*/
 scene.add(mesh);
 scene.add(mesh1);
 scene.add(mesh2);
@@ -216,11 +322,12 @@ var controller = new function() {
   this.rotationY = 0;
   this.rotationZ = 0;
   this.boxColor = color;
-  //this.castShadow = true;
   this.boxOpacity = 1;
 }();
+```
+* Set the size, position, rotation angle, color, and transparency of the controller on the 3D axis.
 
-
+```javascript
 //控制台1 console1
 var gui = new dat.GUI();
 var f1 = gui.addFolder('Scale');
@@ -233,7 +340,10 @@ f1.add(controller, 'scaleY', 0.1, 5).onChange( function() {
 f1.add(controller, 'scaleZ', 0.1, 5).onChange( function() {
   mesh.scale.z = (controller.scaleZ);
 });
+```
+* Set the first console, then set the Scale box, the adjustable range in the X axis is (0.1, 5), the adjustable range in the Y axis is (0.1, 5), and the adjustable range in the Z axis is ( 0.1, 5).
 
+```javascript
 var f2 = gui.addFolder('Position');
 f2.add(controller, 'positionX', -5, 5).onChange( function() {
   mesh.position.x = (controller.positionX);
@@ -244,7 +354,10 @@ f2.add(controller, 'positionY', -5, 5).onChange( function() {
 f2.add(controller, 'positionZ', -5, 5).onChange( function() {
   mesh.position.z = (controller.positionZ);
 });
+```
+* Set the Position box, the adjustable range in the X axis is (-5, 5), the adjustable range in the Y axis is (-5, 5), and the adjustable range in the Z axis is (-5, 5).
 
+```javascript
 var f3 = gui.addFolder('Rotation');
 f3.add(controller, 'rotationX', -180, 180).onChange( function() {
   mesh.rotation.x = de2ra(controller.rotationX);
@@ -255,16 +368,20 @@ f3.add(controller, 'rotationY', -180, 180).onChange( function() {
 f3.add(controller, 'rotationZ', -180, 180).onChange( function() {
   mesh.rotation.z = de2ra(controller.rotationZ);
 });
+```
+* Set the Rotationn box, the adjustable range in the X axis is (-180, 180), the adjustable range in the Y axis is (-180, 180), and the adjustable range in the Z axis is (-180, 180).
+
+```javascript
 gui.addColor( controller, 'boxColor', color ).onChange( function() {
   mesh.material.color.setHex( dec2hex(controller.boxColor) );
 });
-//gui.add( controller, 'castShadow', false ).onChange( function() {
-  //mesh.castShadow = controller.castShadow;
-//});
 gui.add( controller, 'boxOpacity', 0.1, 1 ).onChange( function() {
   material1.opacity = (controller.boxOpacity);
 });
+```
+* Set the color and transparency adjustment of the adjustment box, the transparency adjustment range is (0.1, 1).
 
+```javascript
 //console2
 var gui = new dat.GUI();
 var f1 = gui.addFolder('Scale');
@@ -277,7 +394,10 @@ f1.add(controller, 'scaleY', 0.1, 5).onChange( function() {
 f1.add(controller, 'scaleZ', 0.1, 5).onChange( function() {
   mesh2.scale.z = (controller.scaleZ);
 });
+```
+* Set the second console, then set the Scale box, the adjustable range in the X axis is (0.1, 5), the adjustable range in the Y axis is (0.1, 5), and the adjustable range in the Z axis is ( 0.1, 5).
 
+```javascript
 var f2 = gui.addFolder('Position');
 f2.add(controller, 'positionX', -5, 5).onChange( function() {
   mesh2.position.x = (controller.positionX);
@@ -288,7 +408,10 @@ f2.add(controller, 'positionY', -5, 5).onChange( function() {
 f2.add(controller, 'positionZ', -5, 5).onChange( function() {
   mesh2.position.z = (controller.positionZ);
 });
+```
+* Set the Position box, the adjustable range in the X axis is (-5, 5), the adjustable range in the Y axis is (-5, 5), and the adjustable range in the Z axis is (-5, 5).
 
+```javascript
 var f3 = gui.addFolder('Rotation');
 f3.add(controller, 'rotationX', -180, 180).onChange( function() {
   mesh2.rotation.x = de2ra(controller.rotationX);
@@ -299,15 +422,20 @@ f3.add(controller, 'rotationY', -180, 180).onChange( function() {
 f3.add(controller, 'rotationZ', -180, 180).onChange( function() {
   mesh2.rotation.z = de2ra(controller.rotationZ);
 });
+```
+* Set the Rotationn box, the adjustable range in the X axis is (-180, 180), the adjustable range in the Y axis is (-180, 180), and the adjustable range in the Z axis is (-180, 180).
+
+```javascript
 gui.addColor( controller, 'boxColor', color ).onChange( function() {
   mesh2.material.color.setHex( dec2hex(controller.boxColor) );
 });
-//gui.add( controller, 'castShadow', false ).onChange( function() {
-  //mesh.castShadow = controller.castShadow;
-//});
 gui.add( controller, 'boxOpacity', 0.1, 1 ).onChange( function() {
   material2.opacity = (controller.boxOpacity);
 });
+```
+* Set the color and transparency adjustment of the adjustment box, the transparency adjustment range is (0.1, 1).
+
+```javascript
 //控制台3 console13
 var gui = new dat.GUI();
 var f1 = gui.addFolder('Scale');
@@ -320,6 +448,10 @@ f1.add(controller, 'scaleY', 0.1, 5).onChange( function() {
 f1.add(controller, 'scaleZ', 0.1, 5).onChange( function() {
   mesh1.scale.z = (controller.scaleZ);
 });
+```
+* Set the third console, then set the Scale box, the adjustable range in the X axis is (0.1, 5), the adjustable range in the Y axis is (0.1, 5), and the adjustable range in the Z axis is ( 0.1, 5).
+
+```javascript
 var f2 = gui.addFolder('Position');
 f2.add(controller, 'positionX', -5, 5).onChange( function() {
   mesh1.position.x = (controller.positionX);
@@ -330,7 +462,10 @@ f2.add(controller, 'positionY', -5, 5).onChange( function() {
 f2.add(controller, 'positionZ', -5, 5).onChange( function() {
   mesh1.position.z = (controller.positionZ);
 });
+```
+* Set the Position box, the adjustable range in the X axis is (-5, 5), the adjustable range in the Y axis is (-5, 5), and the adjustable range in the Z axis is (-5, 5).
 
+```javascript
 var f3 = gui.addFolder('Rotation');
 f3.add(controller, 'rotationX', -180, 180).onChange( function() {
   mesh1.rotation.x = de2ra(controller.rotationX);
@@ -341,16 +476,20 @@ f3.add(controller, 'rotationY', -180, 180).onChange( function() {
 f3.add(controller, 'rotationZ', -180, 180).onChange( function() {
   mesh1.rotation.z = de2ra(controller.rotationZ);
 });
+```
+* Set the Rotationn box, the adjustable range in the X axis is (-180, 180), the adjustable range in the Y axis is (-180, 180), and the adjustable range in the Z axis is (-180, 180).
+
+```javascript
 gui.addColor( controller, 'boxColor', color ).onChange( function() {
   mesh1.material.color.setHex( dec2hex(controller.boxColor) );
 });
-//gui.add( controller, 'castShadow', false ).onChange( function() {
-  //mesh.castShadow = controller.castShadow;
-//});
 gui.add( controller, 'boxOpacity', 0.1, 1 ).onChange( function() {
   material.opacity = (controller.boxOpacity);
 });
+```
+* Set the color and transparency adjustment of the adjustment box, the transparency adjustment range is (0.1, 1).
 
+```javascript
 //控制台4 console14
 var gui = new dat.GUI();
 var f1 = gui.addFolder('Scale');
@@ -363,7 +502,10 @@ f1.add(controller, 'scaleY', 0.1, 5).onChange( function() {
 f1.add(controller, 'scaleZ', 0.1, 5).onChange( function() {
   circle.scale.z = (controller.scaleZ);
 });
+```
+* Set the forth console, then set the Scale box, the adjustable range in the X axis is (0.1, 5), the adjustable range in the Y axis is (0.1, 5), and the adjustable range in the Z axis is ( 0.1, 5).
 
+```javascript
 var f2 = gui.addFolder('Position');
 f2.add(controller, 'positionX', -5, 5).onChange( function() {
   circle.position.x = (controller.positionX);
@@ -374,7 +516,10 @@ f2.add(controller, 'positionY', -5, 5).onChange( function() {
 f2.add(controller, 'positionZ', -5, 5).onChange( function() {
   circle.position.z = (controller.positionZ);
 });
+```
+* Set the Position box, the adjustable range in the X axis is (-5, 5), the adjustable range in the Y axis is (-5, 5), and the adjustable range in the Z axis is (-5, 5).
 
+```javascript
 var f3 = gui.addFolder('Rotation');
 f3.add(controller, 'rotationX', -180, 180).onChange( function() {
   circle.rotation.x = de2ra(controller.rotationX);
@@ -385,16 +530,20 @@ f3.add(controller, 'rotationY', -180, 180).onChange( function() {
 f3.add(controller, 'rotationZ', -180, 180).onChange( function() {
   circle.rotation.z = de2ra(controller.rotationZ);
 });
+```
+* Set the Rotationn box, the adjustable range in the X axis is (-180, 180), the adjustable range in the Y axis is (-180, 180), and the adjustable range in the Z axis is (-180, 180).
+
+```javascript
 gui.addColor( controller, 'boxColor', color ).onChange( function() {
   circle.material.color.setHex( dec2hex(controller.boxColor) );
 });
-//gui.add( controller, 'castShadow', false ).onChange( function() {
-  //mesh.castShadow = controller.castShadow;
-//});
 gui.add( controller, 'boxOpacity', 0.1, 1 ).onChange( function() {
   material2.opacity = (controller.boxOpacity);
 });
+```
+* Set the color and transparency adjustment of the adjustment box, the transparency adjustment range is (0.1, 1).
 
+```javascript
 //控制台5 console15
 var gui = new dat.GUI();
 var f1 = gui.addFolder('Scale');
@@ -407,7 +556,10 @@ f1.add(controller, 'scaleY', 0.1, 5).onChange( function() {
 f1.add(controller, 'scaleZ', 0.1, 5).onChange( function() {
   circle1.scale.z = (controller.scaleZ);
 });
+```
+* Set the fifth console, then set the Scale box, the adjustable range in the X axis is (0.1, 5), the adjustable range in the Y axis is (0.1, 5), and the adjustable range in the Z axis is ( 0.1, 5).
 
+```javascript
 var f2 = gui.addFolder('Position');
 f2.add(controller, 'positionX', -5, 5).onChange( function() {
   circle1.position.x = (controller.positionX);
@@ -418,7 +570,10 @@ f2.add(controller, 'positionY', -5, 5).onChange( function() {
 f2.add(controller, 'positionZ', -5, 5).onChange( function() {
   circle1.position.z = (controller.positionZ);
 });
+```
+* Set the Position box, the adjustable range in the X axis is (-5, 5), the adjustable range in the Y axis is (-5, 5), and the adjustable range in the Z axis is (-5, 5).
 
+```javascript
 var f3 = gui.addFolder('Rotation');
 f3.add(controller, 'rotationX', -180, 180).onChange( function() {
   circle1.rotation.x = de2ra(controller.rotationX);
@@ -429,19 +584,19 @@ f3.add(controller, 'rotationY', -180, 180).onChange( function() {
 f3.add(controller, 'rotationZ', -180, 180).onChange( function() {
   circle1.rotation.z = de2ra(controller.rotationZ);
 });
+```
+* Set the Rotationn box, the adjustable range in the X axis is (-180, 180), the adjustable range in the Y axis is (-180, 180), and the adjustable range in the Z axis is (-180, 180).
+
+```javascript
 gui.addColor( controller, 'boxColor', color ).onChange( function() {
   circle1.material.color.setHex( dec2hex(controller.boxColor) );
 });
-//gui.add( controller, 'castShadow', false ).onChange( function() {
-  //mesh.castShadow = controller.castShadow;
-//});
 gui.add( controller, 'boxOpacity', 0.1, 1 ).onChange( function() {
   material3.opacity = (controller.boxOpacity);
 });
 }
 ```
-
-* Setup the GUI controller and consoles.I can control different objects' position,rotation and scale.
+* Set the color and transparency adjustment of the adjustment box, the transparency adjustment range is (0.1, 1).
 
 ```javascript
 function dec2hex(i) {
@@ -455,7 +610,7 @@ function dec2hex(i) {
   if (result.length == 8){return result;}
 }
 ```
-* Color converter
+* Color converter.Conversion from decimal to hexadecimal.
 
 ```javascript
 function render () {
@@ -481,10 +636,6 @@ function render () {
   circle1.rotation.x += 0.01;
   circle1.rotation.y += 0.01;
 
-/*circle.rotation.x += 0.01;
-circle.rotation.y += 0.01;
-circle1.rotation.x += 0.01;
-circle1.rotation.y += 0.01;*/
   renderer.setClearColor("000000");
   // Render the scene
   renderer.render(scene, camera);
@@ -493,32 +644,75 @@ circle1.rotation.y += 0.01;*/
 * Continuously rotate the mesh.
 
 ```javascript
-function lightingSystem(){
+function lightingSystem(){}
+```
+* Lighting system function.
+
+```javascript
   var object3d  = new THREE.DirectionalLight('white', 0.15);
   object3d.position.set(6,3,9);
   object3d.name = 'Back light';
   scene.add(object3d);
+```
+* Define a white parallel light with an intensity of 0.15.The position of the light is(6,3,9).The light is named Back light,finally add the object3d in the scene.
 
+```javascript
   object3d = new THREE.DirectionalLight('white', 0.35);
   object3d.position.set(-6, -3, 0);
   object3d.name   = 'Key light';
   scene.add(object3d);
+```
+* Define a white parallel light with an intensity of 0.35.The position of the light is(-6,-3,0).The light is named Key light,finally add the object3d in the scene.
 
+```javascript
   object3d = new THREE.DirectionalLight('white', 0.55);
   object3d.position.set(9, 9, 6);
   object3d.name = 'Fill light';
-  scene.add(object3d);
-
-  var spotLight = new THREE.SpotLight( 0xffffff );
-  spotLight.position.set( 3, 30, 3 );
-  spotLight.castShadow = true;
-  spotLight.shadow.mapSize.width = 2048;
-  spotLight.shadow.mapSize.height = 2048;
-  spotLight.shadow.camera.near = 1;
-  spotLight.shadow.camera.far = 4000;
-  spotLight.shadow.camera.fov = 45;
-  scene.add( spotLight );
-}
+  scene.add(object3d);}
 ```
+* Define a white parallel light with an intensity of 0.55.The position of the light is(9,9,6).The light is named Fill light,finally add the object3d in the scene.
 
-* Light setting.
+```javascript
+  var spotLight = new THREE.SpotLight( 0xffffff );
+```
+* Define a white spotlight.
+
+```javascript
+  spotLight.position.set( 3, 30, 3 );
+```
+* The position of the spotlight is(3,30,3)
+
+```javascript
+  spotLight.castShadow = true;
+```
+* Then the light source will produce a shadow.
+
+```javascript
+  spotLight.shadow.mapSize.width = 2048;
+```
+* The shadow map width is 2048.
+
+```javascript
+  spotLight.shadow.mapSize.height = 2048;
+```
+* The shadow map height is 2048.
+
+```javascript  
+  spotLight.shadow.camera.near = 1;
+```
+* A value of 1 from the source can produce a shadow.
+
+```javascript  
+  spotLight.shadow.camera.far = 4000;
+```
+* A value of 4000 no longer produces a shadow.
+
+```javascript
+  spotLight.shadow.camera.fov = 45;
+```
+* The angle of the spotlight is 45, which determines the direction of attention.
+
+```javascript
+  scene.add( spotLight );
+```
+* Add the spotlight in the scene.

@@ -1,14 +1,12 @@
-//Global variables
+
 var scene, camera, renderer;
 var geometry, material, mesh, threejs, color;
 var geometey,material1;
 var WIDTH = window.innerWidth,
 HEIGHT = window.innerHeight;
 
-//GUI - Declare variable
 var gui = null;
 
-//Rotation converter
 var de2ra = function(degree) {
   return degree*(Math.PI/180);
 };
@@ -19,10 +17,8 @@ render();
 function init(){
   threejs = document.getElementById('threejs');
 
-  // Create an empty scene --------------------------
   scene = new THREE.Scene();
 
-  // Create a renderer  ------------
   renderer = new THREE.WebGLRenderer({antialias:true});
   renderer.setSize(WIDTH, HEIGHT);
   renderer.setClearColor(0x333F47, 1);
@@ -31,13 +27,11 @@ function init(){
 
   threejs.appendChild(renderer.domElement);
 
-  // Create a basic perspective camera --------------
   camera = new THREE.PerspectiveCamera(45, WIDTH / HEIGHT, 1 , 1000);
   camera.position.set(0, 6, 6);
   camera.lookAt(scene.position);
   scene.add(camera);
 
-  // Create a Cube Mesh with material ---------
   geometry = new THREE.BoxGeometry(2, 2, 2);
   geometry1 = new THREE.CircleBufferGeometry( 2, 32 );
 
@@ -45,30 +39,25 @@ function init(){
   color = Math.random() * 0xffffff;
 
   var material = new THREE.MeshLambertMaterial({
-    //ambient: color,
     color: color,
     transparent: true
   });
 
   var material1 = new THREE.MeshLambertMaterial({
-    //ambient: color,
     color: color,
     transparent: true
   });
 
   var material2 = new THREE.MeshLambertMaterial({
-    //ambient: color,
     color: color,
     transparent: true
   });
 
   var material3 = new THREE.MeshLambertMaterial({
-    //ambient: color,
     color: color,
     transparent: true
   });
 
-//Creat many cubes of the same position and size
   mesh1 = new THREE.Mesh(geometry, material1);
   mesh1.position.set(0, 0, 0);
   mesh1.rotation.set(0, 0, 0);
@@ -133,7 +122,6 @@ function init(){
   mesh7.doubleSided = true;
   mesh7.castShadow = true;
 
-//Creat two circles of the same position and size
 circle = new THREE.Mesh(geometry1, material);
 circle.position.set(0, 0, 0);
 circle.rotation.set(0, 0, 0);
@@ -151,15 +139,6 @@ circle1.scale.set(1, 1, 1);
 circle1.doubleSided = true;
 circle1.castShadow = true;
 
-/*circle2 = new THREE.Mesh(geometry1, material3);
-circle2.position.set(0, 0, 0);
-circle2.rotation.set(0, 0, 0);
-circle2.rotation.y = de2ra(-45);
-circle2.scale.set(1, 1, 1);
-circle2.doubleSided = true;
-circle2.castShadow = true;*/
-
-
 
 
 
@@ -168,7 +147,6 @@ circle2.castShadow = true;*/
 
 scene.add(circle);
 scene.add(circle1);
-/*scene.add(circle2);*/
 scene.add(mesh);
 scene.add(mesh1);
 scene.add(mesh2);
@@ -181,7 +159,6 @@ scene.add(mesh7);
 
   lightingSystem();
 
-  //GUI - Setup the GUI controller
   var controller = new function() {
     this.scaleX = 1;
     this.scaleY = 1;
@@ -193,7 +170,6 @@ scene.add(mesh7);
     this.rotationY = 0;
     this.rotationZ = 0;
     this.boxColor = color;
-    //this.castShadow = true;
     this.boxOpacity = 1;
   }();
 
@@ -235,9 +211,6 @@ scene.add(mesh7);
   gui.addColor( controller, 'boxColor', color ).onChange( function() {
     mesh.material.color.setHex( dec2hex(controller.boxColor) );
   });
-  //gui.add( controller, 'castShadow', false ).onChange( function() {
-    //mesh.castShadow = controller.castShadow;
-  //});
   gui.add( controller, 'boxOpacity', 0.1, 1 ).onChange( function() {
     material1.opacity = (controller.boxOpacity);
   });
@@ -279,9 +252,6 @@ scene.add(mesh7);
   gui.addColor( controller, 'boxColor', color ).onChange( function() {
     mesh2.material.color.setHex( dec2hex(controller.boxColor) );
   });
-  //gui.add( controller, 'castShadow', false ).onChange( function() {
-    //mesh.castShadow = controller.castShadow;
-  //});
   gui.add( controller, 'boxOpacity', 0.1, 1 ).onChange( function() {
     material2.opacity = (controller.boxOpacity);
   });
@@ -321,9 +291,6 @@ scene.add(mesh7);
   gui.addColor( controller, 'boxColor', color ).onChange( function() {
     mesh1.material.color.setHex( dec2hex(controller.boxColor) );
   });
-  //gui.add( controller, 'castShadow', false ).onChange( function() {
-    //mesh.castShadow = controller.castShadow;
-  //});
   gui.add( controller, 'boxOpacity', 0.1, 1 ).onChange( function() {
     material.opacity = (controller.boxOpacity);
   });
@@ -365,9 +332,6 @@ scene.add(mesh7);
   gui.addColor( controller, 'boxColor', color ).onChange( function() {
     circle.material.color.setHex( dec2hex(controller.boxColor) );
   });
-  //gui.add( controller, 'castShadow', false ).onChange( function() {
-    //mesh.castShadow = controller.castShadow;
-  //});
   gui.add( controller, 'boxOpacity', 0.1, 1 ).onChange( function() {
     material2.opacity = (controller.boxOpacity);
   });
@@ -409,9 +373,6 @@ scene.add(mesh7);
   gui.addColor( controller, 'boxColor', color ).onChange( function() {
     circle1.material.color.setHex( dec2hex(controller.boxColor) );
   });
-  //gui.add( controller, 'castShadow', false ).onChange( function() {
-    //mesh.castShadow = controller.castShadow;
-  //});
   gui.add( controller, 'boxOpacity', 0.1, 1 ).onChange( function() {
     material3.opacity = (controller.boxOpacity);
   });
@@ -432,33 +393,30 @@ function dec2hex(i) {
 // Render Loop
 function render () {
   requestAnimationFrame(render);
-  mesh.rotation.x += 0.04; //Continuously rotate the mesh
+  mesh.rotation.x += 0.04;
   mesh.rotation.y += 0.04;
-  mesh1.rotation.x += 0.02; //Continuously rotate the mesh
+  mesh1.rotation.x += 0.02;
   mesh1.rotation.y += 0.02;
-  mesh2.rotation.x += 0.03; //Continuously rotate the mesh
+  mesh2.rotation.x += 0.03;
   mesh2.rotation.y += 0.03;
-  mesh3.rotation.x += 0.01; //Continuously rotate the mesh
+  mesh3.rotation.x += 0.01;
   mesh3.rotation.y += 0.01;
-  mesh4.rotation.x += 0.05; //Continuously rotate the mesh
+  mesh4.rotation.x += 0.05;
   mesh4.rotation.y += 0.05;
-  mesh5.rotation.x += 0.06; //Continuously rotate the mesh
+  mesh5.rotation.x += 0.06;
   mesh5.rotation.y += 0.06;
-  mesh6.rotation.x += 0.07; //Continuously rotate the mesh
+  mesh6.rotation.x += 0.07;
   mesh6.rotation.y += 0.07;
-  mesh7.rotation.x += 0.08; //Continuously rotate the mesh
+  mesh7.rotation.x += 0.08;
   mesh7.rotation.y += 0.08;
-  circle.rotation.x += 0.01; //Continuously rotate the mesh
+  circle.rotation.x += 0.01;
   circle.rotation.y += 0.01;
-  circle1.rotation.x += 0.01; //Continuously rotate the mesh
+  circle1.rotation.x += 0.01;
   circle1.rotation.y += 0.01;
 
-/*circle.rotation.x += 0.01;
-circle.rotation.y += 0.01;
-circle1.rotation.x += 0.01;
-circle1.rotation.y += 0.01;*/
+
   renderer.setClearColor("000000");
-  // Render the scene
+
   renderer.render(scene, camera);
 };
 

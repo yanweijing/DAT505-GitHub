@@ -1,52 +1,26 @@
-// -----------------------------------------------------------------------------
-// BASIC SETUP
-// ------------------------------------------------
 
-// Create an empty scene --------------------------
 var scene = new THREE.Scene();
 
-// Create a basic perspective camera --------------
 camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 300, 10000 );
 
-// Create a renderer with Antialiasing ------------
 var renderer = new THREE.WebGLRenderer({antialias:true});
 
-// Configure renderer clear color
 renderer.setClearColor("#5A8296");
 
-// Configure renderer size
 renderer.setSize( window.innerWidth, window.innerHeight );
-
-// Append Renderer to DOM
 document.body.appendChild( renderer.domElement );
 
-// Configure lights -------------------------------
 var light1 = new THREE.AmbientLight(0xffffff, 0.5);
 scene.add(light1);
 
 var light2 = new THREE.PointLight(0xffffff, 0.5);
 scene.add(light2);
-// ------------------------------------------------
 
-// -----------------------------------------------------------------------------
-
-// ------------------------------------------------
-// Main Content
-// ------------------------------------------------
-
-// Create a Cube Mesh with basic material ---------
 var geometry = new THREE.BoxGeometry(100, 100, 100);
 
 var geometry = new THREE.CylinderGeometry( 50, 50, 20, 32 );
 var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
 
-// MATERIAL 1:
-//var material = new THREE.MeshBasicMaterial( { color: "#433F81" } );
-
-//MATERIAL 2:
-//var material = new THREE.MeshNormalMaterial();
-
-//MATERIAL 3:
 
 var material1 = new THREE.MeshLambertMaterial({
   color: "#433F81",
@@ -54,11 +28,6 @@ var material1 = new THREE.MeshLambertMaterial({
   opacity: 1
 });
 
-
-//MATERIAL 4:
-//var material = new THREE.MeshPhongMaterial({shininess: 1});
-
-//MATERIAL 5 (non-shiny material):
 
 var material = new THREE.MeshLambertMaterial({
   color: '#D2BE82',
@@ -71,8 +40,6 @@ var material = new THREE.MeshLambertMaterial({
 });
 
 
-
-//MATERIAL 6 (shiny material):
 var material2 = new THREE.MeshPhongMaterial({
   color: 0xF3FFE2,
   specular: 0xffffff,
@@ -91,7 +58,6 @@ var material2 = new THREE.MeshPhongMaterial({
 
 
 
-//MATERIAL 6 (combination of shiny + non-shinny):
 var material6 = new THREE.MeshStandardMaterial({
   color: 0xF3FFE2,
   roughness: 0.5,
@@ -99,17 +65,6 @@ var material6 = new THREE.MeshStandardMaterial({
 });
 
 
-/*
-//MATERIAL 7 (physical-based material)
-var material = new THREE.MeshPhysicalMaterial({
-  color: 0xF3FFE2,
-  roughness: 0,
-  metalness: 0.5,
-  reflectivity: 0.5,
-  clearCoat: 0,
-  claerCoatRoughness: 0
-});
-*/
 
 var texture = new THREE.TextureLoader().load("texture/black.jpg");
 
@@ -204,7 +159,6 @@ mesh9.position.y = 0;
 
 // ------------------------------------------------
 
-// Add mesh to scene
 scene.add( mesh1 );
 scene.add( mesh2 );
 scene.add( mesh3 );
@@ -226,45 +180,44 @@ var render = function () {
 
   rot += 0.01;
 
-  mesh1.rotation.x = rot+1; //Continuously rotate the mesh
+  mesh1.rotation.x = rot+1;
   mesh1.rotation.y = rot+1;
 
-  mesh2.rotation.x = rot; //Continuously rotate the mesh
+  mesh2.rotation.x = rot;
   mesh2.rotation.y = rot;
 
-  mesh3.rotation.x = rot+2; //Continuously rotate the mesh
+  mesh3.rotation.x = rot+2;
   mesh3.rotation.y = rot+2;
 
-  mesh4.rotation.x = rot; //Continuously rotate the mesh
+  mesh4.rotation.x = rot;
   mesh4.rotation.y = rot;
 
-  mesh5.rotation.x = rot+2; //Continuously rotate the mesh
+  mesh5.rotation.x = rot+2;
   mesh5.rotation.y = rot+2;
 
-  mesh6.rotation.x = rot+1; //Continuously rotate the mesh
+  mesh6.rotation.x = rot+1;
   mesh6.rotation.y = rot+1;
 
-  mesh7.rotation.x = rot; //Continuously rotate the mesh
+  mesh7.rotation.x = rot;
   mesh7.rotation.y = rot;
 
-  mesh8.rotation.x = rot+2; //Continuously rotate the mesh
+  mesh8.rotation.x = rot+2;
   mesh8.rotation.y = rot+2;
 
-  mesh9.rotation.x = rot; //Continuously rotate the mesh
+  mesh9.rotation.x = rot;
   mesh9.rotation.y = rot;
 
-  mesh10.rotation.x = rot+2; //Continuously rotate the mesh
+  mesh10.rotation.x = rot+2;
   mesh10.rotation.y = rot+2;
 
-  mesh11.rotation.x = rot; //Continuously rotate the mesh
+  mesh11.rotation.x = rot;
   mesh11.rotation.y = rot;
 
-  mesh12.rotation.x = rot; //Continuously rotate the mesh
+  mesh12.rotation.x = rot;
   mesh12.rotation.y = rot;
 
 
-  // Render the scene
   renderer.render(scene, camera);
 };
 
-render(); //Run the function render
+render();
