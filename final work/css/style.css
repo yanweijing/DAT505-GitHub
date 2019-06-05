@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+canvas {
+  display:block;
+}
+
+input{
+    outline-style: none ;
+    border: 3px solid #ccc;
+    background-color: #C9C9C9;
+    border-radius: 3px;
+    padding: 12px 12px;
+    width: 100px;
+    font-size: 30px;
+}
+.btn{
+    display: inline-block;
+    padding: .2em .5em;
+    background-image: linear-gradient(#fff, #bbb);
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: .3em;
+    box-shadow: 0 1px white inset;
+    text-align: center;
+    text-shadow: 0 1px 1px black;
+    width: 100px;
+    height: 45px;
+    font-size: 20px;
+    color:#87CEFA;
+    font-weight: bold;
+}
+.btn:active{
+    box-shadow: .05em .1em .2em rgba(0,0,0,.6) inset;
+    border-color: rgba(0,0,0,.3);
+    background: #bbb;
+}
