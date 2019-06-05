@@ -326,17 +326,41 @@ else if ((!target)){
     if(c.position.y<=0){
       c.material.color.setHex(Math.random()*0xFFFFFF);
     }else {
-
+      c.material.color.setHex(0x000000);
+    }
+  }
+}
+}
+else if ((!target)){
+  if(c.position.x<desti){
+    absx=(desti-c.position.x);
+  }else {
+    absx=(c.position.x-desti);
+  }
+  if(c.position.z<desti){
+    absz=(desti-c.position.z);
+  }else {
+    absz=(c.position.z-desti);
+  }
+  c.rotation.x=0;
+  c.rotation.y=0;
+  c.rotation.z=0;
     c.scale.y = Math.cos(ts/1000*Math.PI+(35-absx)*4.95+(40-absz)*4.95) +1;
     c.material.color.setHex(Math.random() * 0xFFFFFF);
   } else {
     console.log(target);
+    c.rotation.x=0;
+    c.rotation.y=0;
+    c.rotation.z=0;
     if (!!~target.indexOf(i)) {
       c.scale.y = 5* percent
       c.material.color.setHex(Math.random() * 0xFFFFFF);
     } else {
       c.scale.y = 1
       c.material.color.setHex( 0Xc0c0c0);
+      if(c.position.y<0){
+       c.material.color.setHex( 0X000000);
+      }
     }
   }
   });
