@@ -214,28 +214,63 @@ function init() {
 
   renderer = new THREE.WebGLRenderer({antialias:true});
   //renderer.setClearColor( Math.random() * 0xFFFFFF);
-  renderer.setClearColor(0x000000);
+  renderer.setClearColor(0xffffff);
   renderer.setSize(W, H);
 
   controls = new THREE.OrbitControls(camera, renderer.domElement);
 
   //Create a two dimensional grid of objects, and position them accordingly
+  for(var z=10;z>-10;z-=10){
     for (var x = -35; x < 40; x += 5) { // Start from -35 and sequentially add one every 5 pixels
     for (var y = -35; y < 40; y += 5) {
 
       var boxGeometry = new THREE.BoxGeometry(3, 3, 3);
+
+      var circleGeometry = new THREE.CircleBufferGeometry( 1.5, 32 );
+
       //The color of the material is assigned a random color
     //  var boxMaterial = new THREE.MeshLambertMaterial({color:Math.random()*0xFFFFFF});
     var boxMaterial = new THREE.MeshLambertMaterial({color:0x000000});
-      var mesh = new THREE.Mesh(boxGeometry, boxMaterial);
+
+    var texture = new THREE.TextureLoader().load("texture/further.jpg");
+
+    var uniqueMaterial = new THREE.MeshBasicMaterial({map:texture});
+
+    var mesh;
+
+if((x+y)%3==2&&x>15)
+{
+  if(z>0){
+      mesh = new THREE.Mesh(circleGeometry, uniqueMaterial);
+  }
+  else {
+      mesh = new THREE.Mesh(boxGeometry, boxMaterial);
+  }
+}
+else
+{
+  if(z<=0){
+      mesh = new THREE.Mesh(circleGeometry, uniqueMaterial);
+  }
+  else {
+      mesh = new THREE.Mesh(boxGeometry, boxMaterial);
+  }
+
+}
+
       //mesh.castShadow = true;
       mesh.position.x = x;
       mesh.position.z = y;
+      mesh.position.y = z;
+
+
 
       scene.add(mesh);
       cubes.push(mesh);
     }
 }
+}
+
 
   document.body.appendChild(renderer.domElement);
 }
