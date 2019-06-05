@@ -315,21 +315,18 @@ else if ((!target)){
         c.material.color.setHex(0Xc0c0c0);
       } else {
         c.scale.y = 1
-        c.material.color.setHex(0x000000);
-      }
-    }
-    }
-  else if ((!target)){
-    if(c.position.x<desti){
-      absx=(desti-c.position.x);
+        c.material.color.setHex(Math.random() * 0xFFFFFF);
+        for(var i=0;i<3;i++){
+    c.rotation.x+=Math.random()*0.01;
+    c.rotation.z+=Math.random()*0.02;
+    c.rotation.y+=Math.random()*0.01;
+  }
+  } else {
+    c.scale.y = 1
+    if(c.position.y<=0){
+      c.material.color.setHex(Math.random()*0xFFFFFF);
     }else {
-      absx=(c.position.x-desti);
-    }
-    if(c.position.z<desti){
-      absz=(desti-c.position.z);
-    }else {
-      absz=(c.position.z-desti);
-    }
+
     c.scale.y = Math.cos(ts/1000*Math.PI+(35-absx)*4.95+(40-absz)*4.95) +1;
     c.material.color.setHex(Math.random() * 0xFFFFFF);
   } else {
