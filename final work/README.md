@@ -655,12 +655,16 @@ if(c.position.z<desti){
 }else {
   absz=(c.position.z-desti);
 }
+```
+* Absx is the absolute value of the X coordinate of the current mesh.
+Absz is the absolute value of the Y coordinate of the current mesh.
+
+```javascript
 c.rotation.x=0;
 c.rotation.y=0;
 c.rotation.z=0;
 ```
-* Absx is the absolute value of the X coordinate of the current mesh.
-Absz is the absolute value of the Y coordinate of the current mesh.
+* Pause the rotation.
 
 ```javascript
 c.scale.y = Math.cos(ts/1000*Math.PI+(35-absx)*4.95+(40-absz)*4.95) +1;
@@ -689,6 +693,13 @@ else {
 }
 ```
 * Other than that, the small squares that do not represent the numbers and Chinese characters are silver.
+
+```javascript
+if(c.position.y<0){
+  c.material.color.setHex( 0X000000);
+}
+```
+* If position.y<0,the objects are black.
 
 ```javascript
 init();
