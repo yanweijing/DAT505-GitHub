@@ -433,7 +433,7 @@ renderer = new THREE.WebGLRenderer({antialias:true});
 * Generate render object (property: anti-aliasing effect is valid).
 
 ```javascript
-renderer.setClearColor(0x000000);
+renderer.setClearColor(0xffffff);
 ```
 * Render the background color.
 
@@ -448,6 +448,11 @@ controls = new THREE.OrbitControls(camera, renderer.domElement);
 * Constructing  orbitcontrols, mainly by controlling the camera to rotate along the target object through the mouse, so as to observe the object from different angles as in the rotating scene.
 
 ```javascript
+  for(var z=10;z>-10;z-=10)
+```
+* Define a three-dimensional coordinate system,z coordinate is used to control the number of layers.There are two layers of objects on the canvas now.
+
+```javascript
   for (var x = -35; x < 40; x += 5)
   for (var y = -35; y < 40; y += 5)
 ```
@@ -459,20 +464,59 @@ var boxGeometry = new THREE.BoxGeometry(3, 3, 3);
 * Define a boxGeometry.
 
 ```javascript
+var circleGeometry = new THREE.CircleBufferGeometry( 1.5, 32 );
+```
+* Define a circleGeometry.
+
+```javascript
 var boxMaterial = new THREE.MeshLambertMaterial({color:0x000000});
 ```
 * Define a MeshLambertMaterial,its color is black.
 
 ```javascript
-var mesh = new THREE.Mesh(boxGeometry, boxMaterial);
+var texture = new THREE.TextureLoader().load("texture/further.jpg");
 ```
-* Define a mesh,and give it the attributes of boxGeometry and boxMaterial.
+* Define a texture.
+
+```javascript
+var uniqueMaterial = new THREE.MeshBasicMaterial({map:texture});
+```
+* Define a uniqueMaterial.Pass the texture to the material, the material itself can accept a parameter named map.
+
+
+```javascript
+if((x+y)%3==2&&x>15)
+{
+  if(z>0){
+      mesh = new THREE.Mesh(circleGeometry, uniqueMaterial);
+  }
+  else {
+      mesh = new THREE.Mesh(boxGeometry, boxMaterial);
+  }
+}
+else
+{
+  if(z<=0){
+      mesh = new THREE.Mesh(circleGeometry, uniqueMaterial);
+  }
+  else {
+      mesh = new THREE.Mesh(boxGeometry, boxMaterial);
+  }
+
+}
+```
+* Different objects have different Geometry and material. If (x+y%3==2), the object is circleGeometry, and the lower layer is the opposite，it is boxGeometry.
 
 ```javascript
 mesh.position.x = x;
 mesh.position.z = y;
 ```
 * Set the coordinates of the meshX axis to x and the coordinates of the Z axis to y.
+
+```javascript
+mesh.position.y = z;
+```
+* Define two layers of objects.z=10 and z=0.
 
 ```javascript
 scene.add(mesh);
@@ -572,13 +616,28 @@ else
 ```javascript
 if(!!~localTarget.indexOf(i)) {
   c.scale.y = 1
-  c.material.color.setHex(0Xc0c0c0);
-} else {
-  c.scale.y = 1
-  c.material.color.setHex(0x000000);
+  c.material.color.setHex(Math.random() * 0xFFFFFF);
+  for(var i=0;i<3;i++){
+      c.rotation.x+=Math.random()*0.01;
+      c.rotation.z+=Math.random()*0.02;
+      c.rotation.y+=Math.random()*0.01;
+  }
 }
 ```
-* The small square is set to silver in the list of small squares that the current opening animation needs to process. If the coordinates of the mesh are points that need to be raised, it is set to silver, otherwise it is set to black.
+* Before entering the number,the first layer of objects will progressively display colors and the color will be randomly changed.The objects randomly changes color while rotating.The last three rows of code are to increase the speed,then generate random rotation around the axis.
+
+```javascript
+{
+  c.scale.y = 1
+  if(c.position.y<=0){
+    c.material.color.setHex(Math.random()*0xFFFFFF);
+  }else {
+    c.material.color.setHex(0x000000);
+  }
+}
+```
+* if position.y<=0,the color of objects will be randomly changed，otherwise the objects are black.
+
 
 ```javascript
 else if ((!target)){}
@@ -596,6 +655,9 @@ if(c.position.z<desti){
 }else {
   absz=(c.position.z-desti);
 }
+c.rotation.x=0;
+c.rotation.y=0;
+c.rotation.z=0;
 ```
 * Absx is the absolute value of the X coordinate of the current mesh.
 Absz is the absolute value of the Y coordinate of the current mesh.
