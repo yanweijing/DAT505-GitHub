@@ -3,6 +3,10 @@ var cubes = [];
 var rot = 0;
 var start=0;
 var barrelSize=0;
+var raycaster ;
+var object;
+var objects = [];
+var mouse = new THREE.Vector2(), INTERSECTED;
 function getPosition(coordinate) {
   return coordinate[0] + coordinate[1] * 15
 }
@@ -173,10 +177,8 @@ var targetDefaultOpeningCoo = [coordinates_15_line_pos, coordinates_14_line_pos,
 
 var listener = new THREE.AudioListener();
 
-// create a global audio source
 var sound = new THREE.Audio( listener );
 
-// load a sound and set it as the Audio object's buffer
 var audioLoader = new THREE.AudioLoader();
 
 function getTargetCoo(time) {
@@ -213,75 +215,74 @@ function init() {
   scene.add(spotLight);
 
   renderer = new THREE.WebGLRenderer({antialias:true});
-  //renderer.setClearColor( Math.random() * 0xFFFFFF);
   renderer.setClearColor(0xffffff);
   renderer.setSize(W, H);
 
   controls = new THREE.OrbitControls(camera, renderer.domElement);
-
-  //Create a two dimensional grid of objects, and position them accordingly
+  raycaster = new THREE.Raycaster();
+  var myID = 0;
   for(var z=10;z>-10;z-=10){
-    for (var x = -35; x < 40; x += 5) { // Start from -35 and sequentially add one every 5 pixels
-    for (var y = -35; y < 40; y += 5) {
+    for (var x = -35; x < 40; x += 5) {
+      for (var y = -35; y < 40; y += 5) {
+          var boxGeometry = new THREE.BoxGeometry(3, 3, 3);
+          var circleGeometry = new THREE.CircleBufferGeometry( 1.5, 32 );
+          var boxMaterial = new THREE.MeshLambertMaterial({color:0x000000});
+          var texture = new THREE.TextureLoader().load("texture/further.jpg");
+          var uniqueMaterial = new THREE.MeshBasicMaterial({map:texture});
+          var mesh;
 
-      var boxGeometry = new THREE.BoxGeometry(3, 3, 3);
+          if((x+y)%3==2&&x>15)
+          {
+            if(z>0){
+                mesh = new THREE.Mesh(circleGeometry, uniqueMaterial);
+            }
+            else {
+                mesh = new THREE.Mesh(boxGeometry, boxMaterial);
+            }
+          }
+          else
+          {
+            if(z<=0){
+                mesh = new THREE.Mesh(circleGeometry, uniqueMaterial);
+            }
+            else {
+                mesh = new THREE.Mesh(boxGeometry, boxMaterial);
+            }
 
-      var circleGeometry = new THREE.CircleBufferGeometry( 1.5, 32 );
+          }
 
-      //The color of the material is assigned a random color
-    //  var boxMaterial = new THREE.MeshLambertMaterial({color:Math.random()*0xFFFFFF});
-    var boxMaterial = new THREE.MeshLambertMaterial({color:0x000000});
-
-    var texture = new THREE.TextureLoader().load("texture/further.jpg");
-
-    var uniqueMaterial = new THREE.MeshBasicMaterial({map:texture});
-
-    var mesh;
-
-if((x+y)%3==2&&x>15)
-{
-  if(z>0){
-      mesh = new THREE.Mesh(circleGeometry, uniqueMaterial);
-  }
-  else {
-      mesh = new THREE.Mesh(boxGeometry, boxMaterial);
-  }
-}
-else
-{
-  if(z<=0){
-      mesh = new THREE.Mesh(circleGeometry, uniqueMaterial);
-  }
-  else {
-      mesh = new THREE.Mesh(boxGeometry, boxMaterial);
-  }
-
-}
-
-      //mesh.castShadow = true;
-      mesh.position.x = x;
-      mesh.position.z = y;
-      mesh.position.y = z;
+          mesh.position.x = x;
+          mesh.position.z = y;
+          mesh.position.y = z;
+          mesh.myID = myID;
+          myID ++;
 
 
 
       scene.add(mesh);
+      objects.push(mesh);
       cubes.push(mesh);
     }
-}
+  }
 }
 
-
+  document.addEventListener( 'mousemove', onDocumentMouseMove, false );
   document.body.appendChild(renderer.domElement);
 }
 
 
+function onDocumentMouseMove( event ) {
+  event.preventDefault();
+  mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+  mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+}
+
 function drawFrame(ts){
   if(!start) start = ts
- var interval = ts - start
- var target = getTargetCoo(interval)
- var localTarget = getDefaultOpeningCoo(interval)
- var percent = 1 - (interval%1000/1000)
+  var interval = ts - start
+  var target = getTargetCoo(interval)
+  var localTarget = getDefaultOpeningCoo(interval)
+  var percent = 1 - (interval%1000/1000)
   var desti=0;
   var absx=0;
   var absz=0;
@@ -308,7 +309,6 @@ else if ((!target)){
     if(barrelSize==0||barrelSize>10||barrelSize<1)
   {
     if(!localTarget){
-      //do nothing;
   }else{
     if(!!~localTarget.indexOf(i)) {
       c.scale.y = 1
@@ -361,6 +361,23 @@ else if ((!target)){
   }
 }
 });
+
+
+raycaster.setFromCamera( mouse, camera );
+
+var intersects = raycaster.intersectObjects( objects, true );
+
+if ( intersects.length > 0 ) {
+  if ( INTERSECTED != intersects[ 0 ].object ) {
+    if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+    INTERSECTED = intersects[ 0 ].object;
+
+    document.getElementById("result").value=INTERSECTED.myID
+  }
+} else {
+
+  INTERSECTED = null;
+}
 
   renderer.render(scene, camera);
 }

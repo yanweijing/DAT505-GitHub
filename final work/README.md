@@ -2,7 +2,7 @@
 ## Description ##
 The subject of the assignment is a countdown timer.
 
-Overall,the scene is mainly composed by 15*15 three-dimensional blocks，as we set up the background color into black, it to some degree seems like some squares. In different scenes, small squares will be rendered through the transformation of coordinates and colors. On the top of the canvas, an input box shows in front which allows you to set a positive integer with a value less than or equal to 10, and a text reminder is provided for easy understanding. When I first entered the page, the opening music became rhythmic with the silver small squares appear and disappear  iteratively. After the upper limit of the countdown number into the textbox mentioned above is set, the countdown of Arabic numerals and Chinese appeared on the screen, and metal strikes appeared synchronously with the digital transformation. By the end of the countdown, the music stops, the blocks on the whole scene falsh with random color and wave from the center to the edge.
+Overall,the scene is mainly composed of two layers of 15*15 three-dimensional blocks.In different scenes, small squares and wafers will be rendered through the transformation of coordinates and colors. On the top of the canvas, an input box shows in front which allows you to set a positive integer with a value less than or equal to 10, and a text reminder is provided for easy understanding. The second text is,when you point with your mouse to a shape,a value appears that displays the number of this object. When I first entered the page, the opening music became rhythmic with the color of the small squares appeared progressively. After the upper limit of the countdown number into the textbox mentioned above is set, the countdown of Arabic numerals and Chinese appeared on the screen, and metal strikes appeared synchronously with the digital transformation. By the end of the countdown, the music stops, the blocks on the whole scene falsh with random color and wave from the center to the edge.
 
 ### Code comment ###
 
@@ -30,6 +30,18 @@ var start=0;
 var barrelSize=0;
 ```
 * Define the barrelSize(Countdown cap size)=0,the value will be changed when you enter a integer into the text area.
+
+```javascript
+var raycaster ;
+```
+* Define a raycaster.
+
+```javascript
+var objects = [];
+var mouse = new THREE.Vector2(), INTERSECTED;
+```
+* Used to save mouse coordinate information.
+
 
 ```javascript
 function getPosition(coordinate) {
@@ -700,6 +712,25 @@ if(c.position.y<0){
 }
 ```
 * If position.y<0,the objects are black.
+
+```javascript
+raycaster.setFromCamera( mouse, camera );
+var intersects = raycaster.intersectObjects( objects, true );
+```
+* Get the objects that intersects the ray.
+
+```javascript
+if ( intersects.length > 0 )
+  if ( INTERSECTED != intersects[ 0 ].object )
+    if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+    INTERSECTED = intersects[ 0 ].object;
+```
+* Operate the first intersecting object,when the number of picked objects is greater than 0,get the first object.
+
+```javascript
+document.getElementById("result").value=INTERSECTED.myID
+```
+* Get the element based on the ID.（Value） is the value of the control that can enter the content.
 
 ```javascript
 init();
