@@ -371,7 +371,6 @@ if ( intersects.length > 0 ) {
   if ( INTERSECTED != intersects[ 0 ].object ) {
     if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
     INTERSECTED = intersects[ 0 ].object;
-
     document.getElementById("result").value=INTERSECTED.myID
   }
 } else {
